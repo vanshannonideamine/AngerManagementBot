@@ -132,6 +132,15 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
 .alt [fill="#ffcf1f"]{fill:#ff6f61}.alt [fill="#f0b90f"]{fill:#e85a4c}
 #mS,#mF,#mA{stroke:#5ff2ff;stroke-width:3}
 .sm.on{background:var(--gold)}
+.a1,.a2,.d1,.d2{display:none}
+.r1 .a1,.r2 .a2,.r1 .d1,.r2 .d2{display:block}
+.r1 .hat,.r2 .hat{display:none}
+.r1 [fill="#2f8f9d"]{fill:#6a9a63}.r2 [fill="#2f8f9d"]{fill:#8d93a3}
+.r1 [fill="var(--orange)"]{fill:#a63d40}.r2 [fill="var(--orange)"]{fill:#3d5a80}
+.pp{transform-box:fill-box;transform-origin:center}
+.cp #uR{animation:swatR .8s forwards}.cp #fR{animation:swatFR .8s forwards}
+@keyframes swatR{0%{transform:rotate(-14deg)}35%{transform:rotate(-110deg)}55%{transform:rotate(-30deg)}100%{transform:rotate(-14deg)}}
+@keyframes swatFR{0%{transform:rotate(-12deg)}40%{transform:rotate(-60deg)}60%{transform:rotate(-5deg)}100%{transform:rotate(-12deg)}}
 </style>
 </head>
 <body>
@@ -150,6 +159,8 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
   <path d="M322 142 V110 h14 V90 h16 V116 h12 V74 h18 V120 h14 V98 h16 V142 Z" fill="#5a8fb0" stroke-width="2.5"/>
   <path class="f" d="M380 46 V142 M318 94 H442"/>
   <rect class="f" x="318" y="46" width="124" height="96"/>
+  <g class="d1"><rect x="312" y="40" width="136" height="106" fill="#2d4a3e"/><path class="f" d="M326 64 H414 M326 84 H396 M326 104 H424" style="stroke:#f4ebd3;stroke-width:3;opacity:.75"/><rect x="326" y="124" width="26" height="8" fill="#f4ebd3"/></g>
+  <g class="d2"><rect x="312" y="40" width="136" height="106" fill="#f4ebd3"/><rect x="326" y="104" width="18" height="30" fill="#47b35a"/><rect x="350" y="84" width="18" height="50" fill="#47b35a"/><rect x="374" y="64" width="18" height="70" fill="#d93a2b"/><rect x="398" y="94" width="18" height="40" fill="#47b35a"/></g>
   <g id="sign"><rect x="48" y="52" width="108" height="56" fill="#fff6d6"/>
   <text class="n" x="102" y="75" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="11" fill="#1c1426">INCIDENT-FREE</text>
   <text id="days" class="n" x="102" y="98" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="22" fill="#d93a2b">DAY 0</text></g>
@@ -163,6 +174,7 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
 <g class="pc"><rect x="148" y="128" width="104" height="92" rx="24" fill="#4d4668"/><path class="f" d="M162 142 Q168 134 190 134" style="stroke:#8c84b0"/></g>
 <g class="pc"><circle cx="170" cy="288" r="6" fill="#8f8a9c"/></g>
 <g class="pc"><circle cx="230" cy="288" r="6" fill="#8f8a9c"/></g></g>
+<g id="prop"></g>
 <g id="robot">
   <rect x="176" y="214" width="20" height="60" rx="6" fill="#e5dbc0"/><rect x="204" y="214" width="20" height="60" rx="6" fill="#e5dbc0"/>
   <path d="M170 276 h32 v-6 h-32 Z M198 276 h32 v-6 h-32 Z" fill="var(--orange)"/>
@@ -173,6 +185,7 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
   <path d="M160 166 L190 150 L190 218 H168 Z" fill="var(--orange)"/><path d="M240 166 L210 150 L210 218 H232 Z" fill="var(--orange)"/>
   <path class="f" d="M174 190 L188 190 M212 190 L226 190" style="stroke:#ffe36b;stroke-width:5"/>
   <rect x="186" y="164" width="28" height="20" rx="5" fill="#2a3a4c"/>
+  <g class="a2"><path d="M196 150 L204 150 L208 178 L200 192 L192 178 Z" fill="#d93a2b"/></g>
   <g class="alt-only"><rect x="158" y="202" width="84" height="12" fill="#8b5a2b"/><rect x="192" y="199" width="16" height="18" rx="3" fill="#f6c33b"/><rect x="164" y="212" width="10" height="14" rx="2" fill="#bdbdbd"/></g><circle cx="194" cy="174" r="4" fill="#5ff2ff" class="n"/><circle cx="206" cy="174" r="4" fill="#ffd44d" class="n"/>
   <g id="uR"><rect x="228" y="166" width="14" height="42" rx="7" fill="#e5dbc0"/>
     <g id="fR"><rect x="228" y="206" width="14" height="34" rx="7" fill="#e5dbc0"/><circle cx="235" cy="246" r="10" fill="var(--orange)"/><circle cx="235" cy="208" r="7" fill="#8f8a9c"/></g></g>
@@ -192,10 +205,12 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
     <path id="mS" class="f" stroke="#5ff2ff" stroke-width="3" d="M193 118 Q200 123 207 118"/>
     <path id="mF" class="f" stroke="#5ff2ff" stroke-width="3" d="M193 119 H207"/>
     <path id="mA" class="f" stroke="#5ff2ff" stroke-width="3" d="M191 121 L195 117 L199 121 L203 117 L207 121 L209 118"/>
-    <path d="M160 82 Q164 56 200 54 Q236 56 240 82 Z" fill="#ffcf1f"/>
+    <g class="hat"><path d="M160 82 Q164 56 200 54 Q236 56 240 82 Z" fill="#ffcf1f"/>
     <rect x="154" y="78" width="92" height="9" rx="4" fill="#f0b90f"/>
     <path class="f" d="M200 54 V80" stroke-width="3"/><path class="f" d="M172 70 Q178 62 188 60" style="stroke:#fff"/>
-    <g class="alt-only"><rect x="170" y="60" width="60" height="6" rx="3" fill="#14706a"/><circle cx="188" cy="58" r="8" fill="#9fe7f5"/><circle cx="212" cy="58" r="8" fill="#9fe7f5"/><path class="f" d="M184 55 Q187 53 190 54" style="stroke:#fff;stroke-width:2"/></g>
+    <g class="alt-only"><rect x="170" y="60" width="60" height="6" rx="3" fill="#14706a"/><circle cx="188" cy="58" r="8" fill="#9fe7f5"/><circle cx="212" cy="58" r="8" fill="#9fe7f5"/><path class="f" d="M184 55 Q187 53 190 54" style="stroke:#fff;stroke-width:2"/></g></g>
+    <g class="a1"><circle cx="200" cy="70" r="11" fill="#5a3b2e"/><circle cx="189" cy="106" r="11" fill="none" style="stroke:#f4ebd3;stroke-width:3"/><circle cx="211" cy="106" r="11" fill="none" style="stroke:#f4ebd3;stroke-width:3"/><rect x="229" y="90" width="5" height="24" rx="2" fill="#d93a2b"/></g>
+    <g class="a2"><path d="M166 84 L234 84 L242 98 L158 98 Z" fill="#2f9e5a" style="opacity:.9"/></g>
   </g>
 </g>
 <g id="desk">
@@ -221,9 +236,10 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
 <div class="btns"><button class="sm" id="coffee" type="button">Offer coffee</button><button class="sm" id="brk" type="button">Take a break</button><button id="chaosBtn" type="button">Chaos Mode</button></div>
 </div>
 <div id="levels" class="ctl hide">
-<div class="lvl"><b>Level 1: Inbox Inferno</b><button class="sm" id="play1" type="button">Play</button></div>
-<div class="lvl off"><b>Level 2: This Could Have Been an Email</b><span>Coming soon</span></div>
-<div class="lvl off"><b>Level 3: The Conversation Trap</b><span>Coming soon</span></div>
+<div class="lvl"><b>Level 1: Inbox Inferno</b><button class="sm play" data-l="0" type="button">Play</button></div>
+<div class="lvl"><b>Level 2: Grading Season</b><button class="sm play" data-l="1" type="button">Play</button></div>
+<div class="lvl"><b>Level 3: Tax Day</b><button class="sm play" data-l="2" type="button">Play</button></div>
+<div class="lvl off"><b>Level 4: Please Hold</b><span>Coming soon</span></div>
 <button class="sm" id="back" type="button">Back to office</button>
 </div>
 <div id="chaos" class="ctl hide">
@@ -241,7 +257,7 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
   var chair=$('chair'),sign=$('sign'),burst=$('burst'),robot=$('robot'),mug=$('mug'),pcs=chair.querySelectorAll('.pc');
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var mode='home',total=0,best=0,s=0,score=0,combo=1,last=0,busy=false,fc='',timers=[],anims=[];
-  var alt=false,cups=0,clicks=[],irr=false,irrT=null,lastLine={};
+  var role=0,alt=false,cups=0,clicks=[],irr=false,irrT=null,lastLine={};
   try{total=+localStorage.getItem('amb-total')||0;best=+localStorage.getItem('amb-best')||0}catch(e){}
   $('count').textContent=total;
   var idle=['Per my last email...','Another meeting?','Works on my machine.','Have you tried turning it off?','One more ticket. Then lunch.','I am fine. Totally fine.','Who moved my semicolon?','It was working yesterday.','Is it five yet?'];
@@ -259,7 +275,7 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
     head:['Oh. Hi.','Yes? One sec, labeling.','Hello. I am busy.'],headI:['I noticed. I noticed!','Please stop.','...'],
     clock:['Yes. Time is still passing.','Four more hours.','Clocks do not go faster when you click.'],clockI:['Clocks do not go faster when you click.'],
     mug:['Mine. Labeled.','Decaf. Do not ask.'],mugI:['Do not touch the mug.']};
-  function skin(b){alt=b;idle=b?idleB:idleA;after=b?afterB:afterA;poke=b?pokeB:pokeA;
+  function skin(b){alt=b;if(role===0){idle=b?idleB:idleA;after=b?afterB:afterA}poke=b?pokeB:pokeA;
     $('pickA').classList.toggle('on',!b);$('pickB').classList.toggle('on',b);render();
     try{localStorage.setItem('amb-who',b?'B':'A')}catch(e){}}
   function pick(k,a){var l,n=0;do{l=a[Math.floor(Math.random()*a.length)];n++}while(a.length>1&&l===lastLine[k]&&n<9);lastLine[k]=l;return l}
@@ -273,14 +289,53 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
   function say2(t){bub.textContent=t;bub.style.opacity=1}
   function mood(m){$('mood').textContent='Mood: '+m}
   function render(){
-    var c='c'+s;for(var i=1;i<=6;i++)if(s>=i)c+=' g'+i;
-    stage.setAttribute('class',c+fc+(irr?' irr':'')+(alt?' alt':''));
+    var b=B(),c='c'+b;for(var i=1;i<=6;i++)if(b>=i)c+=' g'+i;if(role>0&&s===5)c+=' cp';
+    stage.setAttribute('class',c+fc+(irr?' irr':'')+(alt?' alt':'')+(ROLES[role].cls?' '+ROLES[role].cls:''));
     msg.textContent=note[s];
-    if(mode==='chaos'&&s>0&&s<6){bub.textContent=say[s];bub.style.opacity=1}
-    var p=(6-s)/6*100;fill.style.width=p+'%';fill.style.background=p>60?'#47b35a':p>30?'#f0b90f':'#d93a2b';
-    calm.disabled=busy||!(s>=1&&s<=2);go.disabled=busy;go.textContent=s>=6?'Rebuild desk':'Push';
+    if(mode==='chaos'&&s>0&&s<MX()){bub.textContent=say[s];bub.style.opacity=1}
+    var p=(MX()-s)/MX()*100;fill.style.width=p+'%';fill.style.background=p>60?'#47b35a':p>30?'#f0b90f':'#d93a2b';
+    calm.disabled=busy||!(s>=1&&s<=2);go.disabled=busy;go.textContent=s>=MX()?'Rebuild desk':'Push';
   }
   function show(m){mode=m;$('homeCtl').classList.toggle('hide',m!=='home');$('levels').classList.toggle('hide',m!=='levels');$('chaos').classList.toggle('hide',m!=='chaos')}
+  /* roles: same robot, different job. Chair stays a chair; each job adds its own signature prop beat. */
+  var PR_GLOBE='<g class="pp" style="transform-origin:50% 100%"><path d="M396 286 H434" stroke-width="6"/><rect x="411" y="252" width="8" height="32" fill="#7a5230"/><path class="f" d="M388 236 Q415 266 442 236" style="stroke:#c9a227;stroke-width:6"/></g><g class="pp"><circle cx="415" cy="226" r="26" fill="#3d86c6"/><path d="M400 214 Q410 208 416 220 Q408 228 400 226 Z M420 232 Q436 230 438 242 Q426 248 420 240 Z" fill="#6fbf73" style="stroke-width:2.5"/></g>';
+  var PAP='<g class="pp" style="opacity:0"><rect x="400" y="206" width="26" height="18" fill="#fff" style="stroke-width:2"/></g>';
+  var PR_PRINT='<g class="pp"><path d="M392 286 H442" stroke-width="6"/><rect x="412" y="262" width="8" height="22" fill="#8f8a9c"/></g><g class="pp"><rect x="388" y="222" width="56" height="40" rx="6" fill="#e7e4dc"/><rect x="398" y="208" width="36" height="16" fill="#fff"/><rect x="412" y="244" width="22" height="6" fill="#8f8a9c"/></g>'+PAP+PAP+PAP+PAP+PAP+PAP;
+  var I_TEACH='<rect x="300" y="214" width="62" height="14" fill="#fff"/><rect x="304" y="204" width="56" height="12" fill="#f4ebd3"/><rect x="298" y="194" width="62" height="12" fill="#fff"/><path class="f" d="M310 200 H340" style="stroke:#d93a2b;stroke-width:2.5"/>';
+  var I_ACCT='<rect x="308" y="196" width="48" height="32" rx="5" fill="#3a3a44"/><rect x="314" y="201" width="36" height="9" fill="#9fe7a0"/><path class="f" d="M316 218 H322 M326 218 H332 M336 218 H342 M346 218 H350" style="stroke:#fff;stroke-width:3"/>';
+  var ROLES=[
+    {cls:'',prop:'',item:$('laptop').innerHTML,say:say,note:note},
+    {cls:'r1',prop:PR_GLOBE,item:I_TEACH,
+      idle:['Forty essays. One red pen.','Who took the last marker?','It is only Tuesday.','Please stop asking if this is on the test.','Nobody read the syllabus.'],
+      after:['Class dismissed.','The globe was non-essential.','Deadline extended. Never.'],
+      say:['','Why is the dog always eating homework?','STOP. ASKING. IF. IT IS. ON THE TEST.','Fine. Take the coffee.','Take the papers too.','And the GLOBE!','Take the DESK!',''],
+      note:['Calm. Grading. Push nothing.','Level 1: tearing hair out.','Level 2: slamming the grade book.','Level 3: coffee thrown.','Level 4: papers thrown.','Level 5: the globe.','Level 6: desk flipped.','Level 7: the chair.']},
+    {cls:'r2',prop:PR_PRINT,item:I_ACCT,
+      idle:['The numbers do not lie. People do.','So many receipts.','It balances. Almost.','Carry the one. Always the one.','One more spreadsheet.'],
+      after:['Jam cleared. Permanently.','Printer: 1. Me: 1.','Filing an extension. For the printer.'],
+      say:['','It was off by one cent.','STOP. MOVING. THE DEADLINE.','Fine. Take the coffee.','Take the calculator too.','Paper jam. AGAIN.','Take the DESK!',''],
+      note:['Calm. Balancing. Push nothing.','Level 1: pulling hair out.','Level 2: slamming the ledger.','Level 3: coffee thrown.','Level 4: calculator thrown.','Level 5: the printer jams.','Level 6: desk flipped.','Level 7: the chair.']}
+  ];
+  ROLES[0].idle=idle;ROLES[0].after=after;
+  function MX(){return role>0?7:6}
+  function B(){return (role>0&&s>=5)?s-1:s}
+  function applyRole(i){role=i;var R=ROLES[i];$('prop').innerHTML=R.prop;$('laptop').innerHTML=R.item;say=R.say;note=R.note;
+    if(i===0){idle=alt?idleB:idleA;after=alt?afterB:afterA}else{idle=R.idle;after=R.after}render()}
+  function propBeat(){
+    var pp=$('prop').querySelectorAll('.pp');
+    if(role===1){
+      sfx.whoosh();
+      A(pp[0],[{transform:'none'},{transform:'rotate(20deg)',offset:.3},{transform:'rotate(78deg) translateX(14px)'}],{duration:900,delay:300,easing:'ease-in',fill:'forwards'});
+      A(pp[1],[{transform:'translate(0,0) rotate(0deg)'},{transform:'translate(-170px,-130px) rotate(540deg)',offset:.4},{transform:'translate(-330px,40px) rotate(900deg)',offset:.7},{transform:'translate(-350px,-30px) rotate(1000deg)',offset:.82},{transform:'translate(-372px,42px) rotate(1100deg)'}],{duration:1500,delay:300,easing:'ease-in-out',fill:'forwards'});
+      T(function(){sfx.thud();shake()},1350);T(sfx.clink,1530);T(sfx.thud,1750);
+    }else{
+      sfx.rumble();
+      A(pp[1],[{transform:'translate(0,0)'},{transform:'translate(-3px,0)',offset:.1},{transform:'translate(3px,0)',offset:.2},{transform:'translate(-3px,0)',offset:.3},{transform:'translate(3px,0)',offset:.4},{transform:'translate(0,0)',offset:.55},{transform:'translate(18px,6px) rotate(40deg)',offset:.8},{transform:'translate(48px,44px) rotate(78deg)'}],{duration:1500,easing:'linear',fill:'forwards'});
+      for(var i=2;i<pp.length;i++){var dx=-70+(i-2)*34,r=(i%2?1:-1)*(220+i*40);
+        A(pp[i],[{opacity:0,transform:'translate(0,0)'},{opacity:1,transform:'translate(0,0)',offset:.05},{opacity:1,transform:'translate('+dx*.5+'px,-110px) rotate('+r*.5+'deg)',offset:.5},{opacity:1,transform:'translate('+dx+'px,64px) rotate('+r+'deg)'}],{duration:1800,delay:150+(i-2)*90,easing:'ease-in',fill:'forwards'})}
+      T(function(){sfx.crash();shake()},1250);
+    }
+  }
   /* audio (Web Audio, synthesized, starts after first click) */
   var AC=null,muted=false,unlocked=false,poundI=null;
   try{muted=localStorage.getItem('amb-mute')==='1'}catch(e){}
@@ -310,11 +365,12 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
   };
   function stageSfx(){
     clearInterval(poundI);poundI=null;
-    if(s===1){sfx.whirr();T(sfx.whirr,420)}
-    if(s===2){poundI=setInterval(function(){if(s!==2||busy||mode!=='chaos'){clearInterval(poundI);return}sfx.thud()},360)}
-    if(s===3){T(sfx.whoosh,350);T(sfx.clink,1150)}
-    if(s===4){T(sfx.whoosh,350);T(sfx.crash,1100)}
-    if(s===5){T(sfx.whoosh,300);T(sfx.rumble,500);T(sfx.crash,950)}
+    if(role>0&&s===5)return;var s2=B();
+    if(s2===1){sfx.whirr();T(sfx.whirr,420)}
+    if(s2===2){poundI=setInterval(function(){if(s!==2||busy||mode!=='chaos'){clearInterval(poundI);return}sfx.thud()},360)}
+    if(s2===3){T(sfx.whoosh,350);T(sfx.clink,1150)}
+    if(s2===4){T(sfx.whoosh,350);T(sfx.crash,1100)}
+    if(s2===5){T(sfx.whoosh,300);T(sfx.rumble,500);T(sfx.crash,950)}
   }
   function unlock(){unlocked=true;if(!muted)au()}
   document.addEventListener('pointerdown',unlock);document.addEventListener('keydown',unlock);
@@ -376,9 +432,9 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
     shake();flashFx();sfx.boom();T(sfx.rattle,350);
     A(burst,[{opacity:1,transform:'scale(.3)'},{opacity:1,transform:'scale(1)',offset:.3},{opacity:0,transform:'scale(1.25)'}],{duration:650});
     A(sign,[{transform:'none'},{transform:'translate(0,30px) rotate(20deg)',offset:.4},{transform:'translate(30px,190px) rotate(70deg)'}],{duration:800,easing:'ease-in',fill:'forwards'});
-    var d=[[90,50,68,200],[150,80,87,-260],[200,100,113,310],[60,130,178,-180],[230,90,64,420],[120,110,64,-380]];
-    for(var i=0;i<pcs.length;i++){var x=d[i][0],r=d[i][1],y=d[i][2],o=d[i][3];
-      A(pcs[i],[{transform:'none'},{transform:'translate('+x*.55+'px,'+(-r)+'px) rotate('+o*.5+'deg)',offset:.35},{transform:'translate('+x+'px,'+y+'px) rotate('+o+'deg)',offset:.75},{transform:'translate('+(x+12)+'px,'+(y-14)+'px) rotate('+(o+20)+'deg)',offset:.88},{transform:'translate('+(x+18)+'px,'+y+'px) rotate('+(o+25)+'deg)'}],{duration:1300,easing:'ease-in',fill:'forwards'})}
+    var P=chair.querySelectorAll('.pc');var d=[[90,50,68,200],[150,80,87,-260],[200,100,113,310],[60,130,178,-180],[230,90,64,420],[120,110,64,-380]];
+    for(var i=0;i<P.length;i++){var x=d[i][0],r=d[i][1],y=d[i][2],o=d[i][3];
+      A(P[i],[{transform:'none'},{transform:'translate('+x*.55+'px,'+(-r)+'px) rotate('+o*.5+'deg)',offset:.35},{transform:'translate('+x+'px,'+y+'px) rotate('+o+'deg)',offset:.75},{transform:'translate('+(x+12)+'px,'+(y-14)+'px) rotate('+(o+20)+'deg)',offset:.88},{transform:'translate('+(x+18)+'px,'+y+'px) rotate('+(o+25)+'deg)'}],{duration:1300,easing:'ease-in',fill:'forwards'})}
     fc=' f4';render();bub.style.opacity=0;
     T(shake,1000);
     T(function(){sfx.sigh();say2(pick('after',after))},1500);
@@ -400,10 +456,11 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
   }
   go.addEventListener('click',function(){
     if(busy||mode!=='chaos')return;
-    if(s>=6){reset();sfx.rebuild();return}
+    if(s>=MX()){reset();sfx.rebuild();return}
     s++;award(100*s);render();sfx.push(s);stageSfx();
-    if(s===5)T(shake,950);
-    if(s===6)finale();
+    if(B()===5)T(shake,950);
+    if(role>0&&s===5)propBeat();
+    if(s===MX())finale();
   });
   calm.addEventListener('click',function(){
     if(busy||s<1||s>2)return;
@@ -411,8 +468,8 @@ button:focus-visible{outline:4px dashed var(--ink);outline-offset:5px}
   });
   $('chaosBtn').addEventListener('click',function(){show('levels');say2('Again?')});
   $('back').addEventListener('click',function(){show('home');say2('Good. Back to work.')});
-  $('play1').addEventListener('click',function(){reset();show('chaos');say2('Fine. Do it.')});
-  $('exit').addEventListener('click',function(){if(busy)return;reset();show('home');mood('calm');say2('Back to work.')});
+  Array.prototype.forEach.call(document.querySelectorAll('.play'),function(b){b.addEventListener('click',function(){applyRole(+b.getAttribute('data-l'));reset();show('chaos');say2('Fine. Do it.')})});
+  $('exit').addEventListener('click',function(){if(busy)return;reset();applyRole(0);show('home');mood('calm');say2('Back to work.')});
   $('pickA').addEventListener('click',function(){if(mode==='home'&&s===0&&!busy){skin(false);say2('Hi. I am Winston.')}});
   $('pickB').addEventListener('click',function(){if(mode==='home'&&s===0&&!busy){skin(true);say2('Hi. I am Darla.')}});
   var who='A';try{who=localStorage.getItem('amb-who')||'A'}catch(e){}
